@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>horizontal-scrolling</title>
+    <title>horizontal-scrolling-Kuo</title>
     <style>
         #hori{
             position:absolute;
@@ -22,15 +22,16 @@
 </head>
 
 <body>
-    <h>erkje</h>
-    <div style='min-height: 1500vh;'>
+
+    <div style='min-height: 1000vh;'>
         <div class='sticky-top'>
             <div id="hori">
-                <img src="assets/img1.jpg" style="height: 100vh;">
+                <img id="night" src="assets/img1.svg" style="position: fixed; height: 100vh;">
             </div>
+            <img src="assets/img2.png" style="position: fixed; width:70vw; top: 20vh; left:5vw;">
         </div>
-
     </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -42,10 +43,8 @@
 
         $(window).scroll(function () {
             var maxh = $(document).height() - $(window).height();
-            var maxw = $("#hori").width() - $(window).width();
+            var maxw = $("#night").width() - $(window).width();
             var current_pos = $(window).scrollTop();
-
-            console.log(current_pos);
 
             $('#hori').css({left: -1 * maxw * current_pos / maxh});
         });
