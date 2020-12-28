@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Parallax vertical</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <style>
+        #div1 {
+            background-image: url("assets/bkg1.jpg");
+        }
+
+        #div2 {
+            background-image: url("assets/bkg2.jpg");
+        }
+
+        #div3 {
+            background-image: url("assets/bkg3.jpg");
+        }
+
+        #div1,
+        #div2,
+        #div3 {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .shadow {
+            filter: drop-shadow(8px 8px 7px rgba(0, 0, 0, 0.6));
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+    </script>
+
+
+</head>
+
+<body>
+    <div class="container-fluid" style="background-color:rgb(206, 228, 247);height:20vh;">
+    </div>
+    <div id="div1" class="container-fluid" style="background-color:black;height:200vh;position:relative;">
+        <img class="scrollable shadow" data-top=0 data-top2=60 data-left=25 data-left2=35 data-width=30 data-width2=20
+            src="assets/ppl1.png" style="position:absolute;width:30%;top:0%;left:25%;filter:grayscale(.3) blur(0px);">
+        <img class="scrollable shadow" data-top=3 data-top2=70 data-left=32 data-left2=45 data-width=8 data-width2=30
+            src="assets/ball1.png" style="position:absolute;width:8%;top:3%;left:32%;">
+    </div>
+
+    <div class="container-fluid" style="background-color:rgba(19, 15, 46);min-height: 200px">
+        <p style="color:white; font-size: 50px;text-align: center;">scene 2</p>
+    </div>
+    <div id="div2" class="container-fluid" style="background-color:black;height:200vh;position:relative;">
+        <img class="scrollable shadow" data-top=3 data-top2=55 data-left=75 data-left2=49 data-width=25 data-width2=30
+            src="assets/ppl2.png" style="position:absolute;width:25%;top:3%;left:75%;filter:grayscale(.3) blur(0px);">
+        <img class="scrollable shadow" data-top=15 data-top2=55 data-left=0 data-left2=15 data-width=40 data-width2=40
+            src="assets/ppl3.png" style="position:absolute;width:40%;top:15%;left:0%;">
+    </div>
+
+    <div class="container-fluid" style="background-color:rgb(19, 15, 46);min-height: 200px"></div>
+    <div id="div3" class="container-fluid" style="background-color:black;height:200vh;position:relative;">
+        <img class="scrollable shadow" data-top=18 data-top2=70 data-left=28 data-left2=40 data-width=15 data-width2=35
+            src="assets/raft.png" style="position:absolute;width:15%;top:18%;left:28%;">
+    </div>
+
+    <div class="container-fluid" style="background-color:rgb(90, 130, 165);min-height: 200px"></div>
+
+
+    <script>
+        $(document).ready(function () {
+            var winh = $(window).height();
+            $(window).scroll(function () {
+                var scrolled = $(window).scrollTop();
+                $(".scrollable").each(function () {
+                    var parent_pos = $(this).parent().offset().top;
+                    var next_pos = $(this).parent().next().offset().top;
+                    var parent_height = $(this).parent().height();
+                    var parent_scrolled = scrolled - $(this).parent().offset().top;
+                    if (parent_scrolled > 0 && scrolled < next_pos - winh) {
+
+                        if ($(this).attr("data-left")) {
+                            $(this).css('left', (($(this).data('left2') - $(this).data(
+                                'left')) * parent_scrolled / winh + $(this).data('left')
+                                ) + '%');
+                        }
+                        if ($(this).attr("data-top")) {
+                            $(this).css('top', (($(this).data('top2') - $(this).data('top')) *
+                                parent_scrolled / winh + $(this).data('top')) + '%');
+                        }
+                        if ($(this).attr("data-width")) {
+                            $(this).css('width', (($(this).data('width2') - $(this).data(
+                                'width')) * parent_scrolled / winh + $(this).data(
+                                'width')) + '%');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
